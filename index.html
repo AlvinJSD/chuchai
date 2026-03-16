@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our 6 Months</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --deep-blue: #003049;
+            --rich-red: #D62828;
+            --off-white: #eae2b7; /* A soft cream to balance the dark colors */
+            --gold: #fcbf49;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--deep-blue);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            color: var(--off-white);
+        }
+
+        /* Main Container */
+        .app-container {
+            background: #fff;
+            width: 95%;
+            max-width: 450px;
+            height: 90vh;
+            border-radius: 25px;
+            overflow-y: auto;
+            position: relative;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+            border: 4px solid var(--gold);
+        }
+
+        /* Home Screen Section */
+        #home-screen {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 30px;
+            text-align: center;
+            background: linear-gradient(180deg, var(--deep-blue) 0%, #001d2d 100%);
+        }
+
+        .main-title {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3rem;
+            color: var(--gold);
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .btn-open {
+            background: var(--rich-red);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+            box-shadow: 0 4px 15px rgba(214, 40, 40, 0.4);
+        }
+
+        .btn-open:active {
+            transform: scale(0.95);
+        }
+
+        /* Gallery Section (Hidden initially) */
+        #gallery-screen {
+            display: none;
+            padding: 20px;
+            background: var(--off-white);
+            min-height: 100%;
+        }
+
+        .gallery-header {
+            color: var(--deep-blue);
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .photo-card {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            background: #ccc;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 3px solid white;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .photo-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Floating Hearts */
+        .heart {
+            position: fixed;
+            color: var(--rich-red);
+            z-index: 999;
+            pointer-events: none;
+            animation: floatUp 3s linear forwards;
+        }
+
+        @keyframes floatUp {
+            0% { transform: translateY(0) scale(1); opacity: 1; }
+            100% { transform: translateY(-500px) scale(1.5); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="app-container">
+        <div id="home-screen">
+            <h1 class="main-title">Happy 6 Months</h1>
+            <p class="subtitle">To my favorite person & classmate.</p>
+            <button class="btn-open" onclick="showGallery()">Open Our Memories</button>
+        </div>
+
+        <div id="gallery-screen">
+            <h2 class="gallery-header">Our Journey So Far</h2>
+            <div class="photo-grid">
+                <div class="photo-card"><img src="img/image1.jpg" alt="Memory 1"></div>
+                <div class="photo-card"><img src="img/image2.jpg" alt="Memory 2"></div>
+                <div class="photo-card"><img src="img/image3.jpg" alt="Memory 3"></div>
+                <div class="photo-card"><img src="img/image4.jpg" alt="Memory 4"></div>
+                <div class="photo-card"><img src="img/image5.jpg" alt="Memory 5"></div>
+                <div class="photo-card"><img src="img/image6.jpg" alt="Memory 6"></div>
+            </div>
+            <p style="color: var(--deep-blue); text-align: center; margin-top: 30px; font-weight: 600;">
+                And many more to come! ❤️
+            </p>
+        </div>
+    </div>
+
+    <script>
+        function showGallery() {
+            // Hide home, show gallery
+            document.getElementById('home-screen').style.display = 'none';
+            document.getElementById('gallery-screen').style.display = 'block';
+            
+            // Trigger heart burst
+            for(let i=0; i<20; i++) {
+                createHeart();
+            }
+        }
+
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.innerHTML = '❤️';
+            heart.className = 'heart';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.top = '80vh';
+            heart.style.fontSize = (Math.random() * 20 + 10) + 'px';
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 3000);
+        }
+    </script>
+</body>
+</html>
